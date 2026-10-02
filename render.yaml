@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: hidden-trump
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci --include=dev && npm run typecheck && npm test && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: off
+    envVars:
+      - key: NODE_ENV
+        value: production
